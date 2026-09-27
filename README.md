@@ -1,30 +1,68 @@
 # Modern Portfolio
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A modern personal-portfolio website: animated hero, about, projects showcase, tech stack, testimonials, contact form, and footer. Originally generated with [v0.app](https://v0.app) and maintained as a full Next.js project.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/gileb64375-5584s-projects/v0-modern-portfolio)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/QgESvcbTNgK)
+🌐 **Live demo:** https://girishlade111.github.io/modern-portfolio/
 
-## Overview
+## Features
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- **Animated hero** — motion-driven intro section (Framer Motion)
+- **About** — personal bio/profile section
+- **Projects** — showcase grid with project cards
+- **Tech stack** — skills and tools display
+- **Testimonials** — carousel of endorsements (Embla Carousel)
+- **Contact** — form-based contact section (react-hook-form + zod validation)
+- **Dark theme** — via `next-themes`, Radix UI primitives, Tailwind CSS, Geist font
+- **Analytics** — `@vercel/analytics` integrated
 
-## Deployment
+## Tech stack
 
-Your project is live at:
+| Layer     | Tech                                              |
+|-----------|---------------------------------------------------|
+| Framework | Next.js 15.2 (App Router), React 19, TypeScript    |
+| Styling   | Tailwind CSS, tailwindcss-animate, Geist           |
+| UI kit    | Radix UI primitives, shadcn/ui-style `components/ui` |
+| Motion    | Framer Motion                                     |
+| Carousel  | Embla Carousel                                    |
+| Forms     | react-hook-form, zod, @hookform/resolvers          |
+| Deploy    | GitHub Pages (static export)                       |
 
-**[https://vercel.com/gileb64375-5584s-projects/v0-modern-portfolio](https://vercel.com/gileb64375-5584s-projects/v0-modern-portfolio)**
+## Quick start
 
-## Build your app
+```bash
+# install
+pnpm install        # or: npm install --legacy-peer-deps
 
-Continue building your app on:
+# dev server
+pnpm dev            # http://localhost:3000
 
-**[https://v0.app/chat/projects/QgESvcbTNgK](https://v0.app/chat/projects/QgESvcbTNgK)**
+# production build (static export)
+pnpm build          # output goes to out/
+```
 
-## How It Works
+> **Security note:** `next` was bumped from `15.2.4` → `15.2.8` — earlier 15.2.x releases are affected by CVE-2025-55182 (React2Shell RCE).
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Project structure
+
+```
+app/                # App Router — layout.tsx, page.tsx, globals.css
+components/         # hero, about, projects, tech-stack, testimonials, contact, footer, navbar
+  ui/               # Radix-based primitives
+lib/                # utilities
+public/             # images
+styles/             # global styles
+```
+
+## Environment variables
+
+None required. `@vercel/analytics` works out of the box on Vercel; on GitHub Pages it is inert.
+
+## Deployment notes
+
+- This app has **no API routes and no server actions**, so it is statically exported (`output: 'export'` in `next.config.mjs`) and hosted on **GitHub Pages** from the `gh-pages` branch.
+- `next.config.mjs` sets `basePath: '/modern-portfolio'` because GitHub Pages serves it from the `/modern-portfolio/` subpath. **If you deploy to a root domain or Vercel instead, remove the `basePath` line.**
+- `images.unoptimized: true` is set, so no image-optimization backend is needed.
+
+---
+
+Built by Girish Lade — https://ladestack.in
